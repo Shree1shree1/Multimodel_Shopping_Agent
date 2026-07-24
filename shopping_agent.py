@@ -2,7 +2,7 @@ import base64
 import json
 import os
 import sqlite3
-from typing import Optional
+from typing import Optional, Union
 
 from dotenv import load_dotenv
 from langchain.agents import create_agent
@@ -43,7 +43,11 @@ def _normalize_organic(value) -> Optional[bool]:
             return False
     return None
 @tool
-def search_products(query: str, max_price: Optional[float] = None, is_organic: Optional[str] = None) -> str:
+def search_products(
+    query: str,
+    max_price: Optional[float] = None,
+    is_organic: Optional[Union[bool, str]] = None,
+) -> str:
     """
     Search the product database by keyword (matched against name, description, and category).
     Optionally filter by maximum price and/or organic status.
