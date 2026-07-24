@@ -43,14 +43,13 @@ def _normalize_organic(value) -> Optional[bool]:
             return False
     return None
 @tool
-def search_products(query: str, max_price: Optional[float] = None, is_organic: Optional[str] = None) -> str:
+def search_products(query: str, max_price: Optional[float] = None, is_organic: Optional[bool] = None) -> str:
     """
     Search the product database by keyword (matched against name, description, and category).
     Optionally filter by maximum price and/or organic status.
 
-    is_organic: pass the string "true" to filter to organic products, "false" to filter to
+    is_organic: pass true to filter to organic products, false to filter to
     non-organic products, or omit this parameter entirely if organic status doesn't matter.
-    Do NOT pass the word None, null, or an empty string — just leave the parameter out.
 
     Returns a JSON array of matching products, each with: id, name, category, price,
     description, is_organic.
