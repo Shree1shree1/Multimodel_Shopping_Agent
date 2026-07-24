@@ -43,7 +43,7 @@ def _normalize_organic(value) -> Optional[bool]:
             return False
     return None
 @tool
-def search_products(query: str, max_price: Optional[float] = None, is_organic: Optional[bool] = None) -> str:
+def search_products(query: str, max_price: Optional[float] = None, is_organic: Optional[str] = None) -> str:
     """
     Search the product database by keyword (matched against name, description, and category).
     Optionally filter by maximum price and/or organic status.
