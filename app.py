@@ -89,8 +89,10 @@ if prompt := st.chat_input("e.g. I want organic honey under $15 with 4+ rating")
                 result = agent.invoke({"messages": st.session_state.messages})
                 response = result["messages"][-1].content.replace("`", "")
             except Exception as e:
+                import traceback
+                st.error(f"DEBUG: {type(e).__name__}: {e}")
+                st.code(traceback.format_exc())
                 response = "Sorry, I hit a snag processing that — could you rephrase your request?"
-                st.error(f"Debug: {e}")  # remove this line in production
         st.markdown(response.replace("$", r"\$"))
 
     st.session_state.messages.append({"role": "assistant", "content": response})
