@@ -12,7 +12,8 @@ st.set_page_config(page_title="AI Shopping Assistant", page_icon="🛒", layout=
 
 st.title("🛒 AI Shopping Assistant")
 st.caption("Tell me what you want — I'll search, rate, and order the best match for you.")
-
+if "last_error" in st.session_state:
+    st.error(st.session_state["last_error"])
 # ---------------------------------------------------------------------------
 # Sidebar — shop by image
 # ---------------------------------------------------------------------------
@@ -90,8 +91,7 @@ if prompt := st.chat_input("e.g. I want organic honey under $15 with 4+ rating")
                 response = result["messages"][-1].content.replace("`", "")
             except Exception as e:
                 import traceback
-                st.error(f"DEBUG: {type(e).__name__}: {e}")
-                st.code(traceback.format_exc())
+                st.session_state["last_error"] = f"{type(e).__name__}: {e}\n\n{traceback.format_exc()}"
                 response = "Sorry, I hit a snag processing that — could you rephrase your request?"
         st.markdown(response.replace("$", r"\$"))
 
