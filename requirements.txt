@@ -3,3 +3,5 @@ dotenv
 langchain
 langchain-core
 langchain-groq
+torchvision
+torch
