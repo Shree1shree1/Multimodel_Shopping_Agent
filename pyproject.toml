@@ -5,14 +5,12 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "langchain>= 0.3.0",
-    "langchain-core>= 1.0.0",
-    "langchain-google-genai>= 4.2.2",
-    "langchain-groq>= 0.3.0",
-    "python-dotenv>= 1.2.2",
-    "streamlit>= 1.57.0",
-    "ipykernel>= 7.2.0",
-    "notebook>= 7.5.6",
+    "langchain>=0.3.0",
+    "langchain-core>=1.0.0",
+    "langchain-google-genai>=4.2.2",
+    "langchain-groq>=0.3.0",
+    "python-dotenv>=1.2.2",
+    "streamlit>=1.57.0",
     "langchain-chroma",
     "langchain-huggingface",
     "chromadb",
@@ -21,4 +19,25 @@ dependencies = [
     "fpdf2",
     "pypdf",
     "langchain-community",
+    "torch",
+    "torchvision",
 ]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.2.0",
+    "notebook>=7.5.6",
+]
+
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cpu" },
+]
+torchvision = [
+  { index = "pytorch-cpu" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
